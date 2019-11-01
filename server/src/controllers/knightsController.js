@@ -55,7 +55,7 @@ router.get('/:knightId', async (req, res) => {
 router.delete('/:knightId', async (req, res) => {
     try {
         await Knight.findByIdAndRemove(req.params.knightId, async (err, res) => {
-            console.log(res);
+
             const { name, nickname, birthday, attributes, weapons, keyAttribute } = res;
             const heroes = await Heroes.create({name, nickname, birthday, attributes, keyAttribute});
 
