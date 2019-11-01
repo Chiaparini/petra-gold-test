@@ -90,7 +90,6 @@ router.put('/:knightId', async (req, res) => {
 
         res.send({ knight });
     } catch (err){
-        console.log(err)
         return res.status(400).send({ error: 'Error while updating the knight.' });
     }
 });
