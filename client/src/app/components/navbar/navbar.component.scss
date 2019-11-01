@@ -1,0 +1,11 @@
+a {
+    margin-right: 16px;
+
+    &:last-child {
+        margin: 0;
+    }
+}
+
+.navbar {
+    border-bottom: 1px solid lightsteelblue;
+}

@@ -1,0 +1,9 @@
+<h1>Edit the brave {{ name$ | async }} nickname's:</h1>
+
+<form [formGroup]="knightForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput formControlName="nickname" placeholder="Nickname">
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit" [disabled]="!knightForm.valid">Edit</button>
+</form>

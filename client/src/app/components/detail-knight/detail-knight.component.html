@@ -1,0 +1,31 @@
+<section>
+    <mat-card *ngIf="!!knight" class="knight-card">
+        <mat-card-header>
+            <div mat-card-avatar class="knight-card__image"></div>
+            <mat-card-title>{{ knight.name }},</mat-card-title>
+            <mat-card-subtitle>{{ knight.nickname }} | Key Attribute: <b>{{ knight.keyAttribute | titlecase }}</b></mat-card-subtitle>
+            <mat-card-subtitle>{{ knight.age }} years | EXP: <b>{{ knight.exp }}</b></mat-card-subtitle>
+            <mat-card-subtitle>Attack: <b>{{ knight.attack }}</b></mat-card-subtitle>
+            
+        </mat-card-header>
+        <mat-card-content>
+            <mat-divider></mat-divider>
+                <mat-list>
+                    <h3 mat-subheader>Attributes: </h3>
+                    <mat-list-item *ngFor="let attribute of knight.attributes | keyvalue">
+                        <mat-icon mat-list-icon>brightness_5</mat-icon>
+                        <p mat-line>{{ attribute.key | titlecase }}: {{ attribute.value }}</p>
+                    </mat-list-item>
+                </mat-list>
+            <mat-divider></mat-divider>
+                <mat-list>
+                    <h3 mat-subheader>Weapons: </h3>
+                    <mat-list-item *ngFor="let weapon of knight.weapons">
+                        <mat-icon mat-list-icon>sports_cricket</mat-icon>
+                        <p mat-line>{{ weapon.name | titlecase }} | Equipped: {{ weapon.equipped }}</p>
+                    </mat-list-item>
+                </mat-list>
+        </mat-card-content>
+     
+    </mat-card>
+</section>

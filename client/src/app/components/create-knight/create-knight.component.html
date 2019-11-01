@@ -1,0 +1,103 @@
+<h1>Create a knight:</h1>
+
+
+<form [formGroup]="knightForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput formControlName="name" placeholder="Name">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input matInput formControlName="nickname" placeholder="Nickname">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input matInput formControlName="birthday" [matDatepicker]="picker" placeholder="Birthday" disabled="true">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field>
+    
+    <section>
+        <div class="weapons">
+            <h4>Weapons: </h4>
+            <div>
+                <button mat-icon-button color="primary" (click)="addWeapon()" aria-label="Add a new weapon">
+                    <mat-icon>library_add</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <div *ngIf="!!knightForm.get('weapons').controls.length">
+            <div formArrayName="weapons" *ngFor="let item of knightForm.get('weapons').controls; let i = index">
+                <div [formGroupName]="i" class="weapon-form">
+                    <mat-form-field>
+                        <input matInput formControlName="name" placeholder="Name">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <input matInput formControlName="mod" placeholder="Mod" type="number">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-select formControlName="attr" placeholder="Attribute">
+                            <mat-option value="strength">Strength</mat-option>
+                            <mat-option value="dexterity">Dexterity</mat-option>
+                            <mat-option value="constitution">Constitution</mat-option>
+                            <mat-option value="intelligence">Intelligence</mat-option>
+                            <mat-option value="wisdom">Wisdom</mat-option>
+                            <mat-option value="charisma">Charisma</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-checkbox formControlName="equipped" (change)="setEquippedWeapon(i)">Equipped</mat-checkbox>
+
+                    <button mat-icon-button color="warn" (click)="removeWeapon(i)" aria-label="Remove weapon">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section formGroupName="attributes">
+        <h4>Attributes: </h4>
+        <div class="attribute-slider">
+            <label>Strength:</label>
+            <mat-slider color="primary" formControlName="strength" thumbLabel min="0" max="20" tickInterval="5"></mat-slider>
+        </div>
+        <div class="attribute-slider">
+            <label>Dexterity:</label>
+            <mat-slider color="primary" formControlName="dexterity" thumbLabel min="0" max="20" tickInterval="5"></mat-slider>
+        </div>
+        <div class="attribute-slider">
+            <label>Constitution:</label>
+            <mat-slider color="primary" formControlName="constitution" thumbLabel min="0" max="20" tickInterval="5"></mat-slider>
+        </div>
+        <div class="attribute-slider">
+            <label>Intelligence:</label>
+            <mat-slider color="primary" formControlName="intelligence" thumbLabel min="0" max="20" tickInterval="5"></mat-slider>
+        </div>
+        <div class="attribute-slider">
+            <label>Wisdom:</label>
+            <mat-slider color="primary" formControlName="wisdom" thumbLabel min="0" max="20" tickInterval="5"></mat-slider>
+        </div>
+        <div class="attribute-slider">
+            <label>Charisma:</label>
+            <mat-slider color="primary" formControlName="charisma" thumbLabel min="0" max="20" tickInterval="5"></mat-slider>
+        </div>
+        
+    </section>
+    
+    <mat-form-field>
+        <mat-select formControlName="keyAttribute" placeholder="Key Attribute">
+            <mat-option value="strength">Strength</mat-option>
+            <mat-option value="dexterity">Dexterity</mat-option>
+            <mat-option value="constitution">Constitution</mat-option>
+            <mat-option value="intelligence">Intelligence</mat-option>
+            <mat-option value="wisdom">Wisdom</mat-option>
+            <mat-option value="charisma">Charisma</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit" [disabled]="!knightForm.valid">Create</button>
+
+</form>

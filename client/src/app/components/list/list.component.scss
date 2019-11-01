@@ -1,0 +1,10 @@
+table {
+    width: 100%;
+}
+
+.knight-row {
+    &:hover {
+        background-color: lightgrey;
+        cursor: pointer;
+    }
+}
